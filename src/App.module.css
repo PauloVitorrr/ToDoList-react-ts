@@ -6,8 +6,9 @@
     align-items: center;
 }
 .box{
-    width: 39rem;
+    width: 33rem;
     height: 34.3rem;
     background: var(--white-);
     padding: 0.938rem;
+    border-radius: 10px;
 }

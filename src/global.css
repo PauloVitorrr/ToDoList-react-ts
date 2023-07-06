@@ -1,6 +1,7 @@
 :root{
   --white-: #ffffff;
   --blue-300: #1f104f;
+  --red-: #ff0000;
 }
 *{
     margin: 0;

@@ -1,0 +1,19 @@
+.renderTask{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+.titleRadio{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.Icons{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.Icons > button:hover{
+    color: red;
+}

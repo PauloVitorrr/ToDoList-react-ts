@@ -11,7 +11,8 @@ import { Item } from './types/Item'
 
 export function  App() {
   const [list, useList] = useState<Item[]>([
-    { id: 1, name: 'Comprar pão', done: false}
+    { id: 1, name: 'Comprar pão', done: false},
+    { id: 2, name: 'Fazer atividade', done: false}
   ])
   return (
     <div  className={styles.container}>
@@ -22,7 +23,15 @@ export function  App() {
           />
         </form>
         <div>
-          <Task/>
+          {list.map(listt =>{
+            return(
+              <Task
+                key={listt.id}
+                name={listt.name}
+                done={listt.done}
+              />
+            )
+          })}
         </div>
       </div>
     </div>

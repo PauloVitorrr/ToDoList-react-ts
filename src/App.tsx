@@ -1,10 +1,15 @@
-import './App.css'
+import './global.css'
+import styles from './App.module.css'
+
+import { Input } from '@chakra-ui/react'
 
 function App() {
 
   return (
-    <div>
-      <h1>Olá mundo</h1>
+    <div  className={styles.container}>
+      <div className={styles.box}>
+        <Input/>
+      </div>
     </div>
   )
 }

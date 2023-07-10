@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 
 import { Task } from './components/Task'
 import { Item } from './types/Item'
@@ -38,6 +38,10 @@ export function  App() {
     setInputText(event.target.value)
   }
 
+  function handleNewTaskInvalid(event: InvalidEvent<HTMLInputElement>){
+    event.target.setCustomValidity('Este campo é obrigatório')
+  }
+
   return (
     <div  className={styles.container}>
       <div className={styles.box}>
@@ -47,6 +51,8 @@ export function  App() {
             placeholder='Digite sua task'
             value={inputText}
             onChange={handleNewTaskChange}
+            onInvalid={handleNewTaskInvalid}
+            required
           />
           <button type="submit" className={styles.buttonAddTask}>
             <Plus size={20}/>

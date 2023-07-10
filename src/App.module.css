@@ -12,3 +12,13 @@
     padding: 0.938rem;
     border-radius: 10px;
 }
+.containerInputAdd{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.buttonAddTask{
+    padding: 5px;
+    background-color: var(--blue-300);
+    color: var(--white-);
+}

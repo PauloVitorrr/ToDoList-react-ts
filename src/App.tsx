@@ -42,6 +42,13 @@ export function  App() {
     event.target.setCustomValidity('Este campo é obrigatório')
   }
 
+  function deleteTask(taskToDelete: string){
+    const tasksWithoutDeleteOne = list.filter(task => {
+      return task.name !== taskToDelete
+    })
+    setList(tasksWithoutDeleteOne)
+  }
+
   return (
     <div  className={styles.container}>
       <div className={styles.box}>
@@ -66,6 +73,7 @@ export function  App() {
                 key={listt.id}
                 name={listt.name}
                 done={listt.done}
+                onDeleteTask={deleteTask}
               />
             )
           })}

@@ -17,3 +17,12 @@
 .Icons > button:hover{
     color: red;
 }
+.marked{
+    text-decoration: line-through;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.noMarked{
+    font-size: 1.1rem;
+    font-weight: bold;
+}

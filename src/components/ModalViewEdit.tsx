@@ -12,7 +12,7 @@ import {
     Button,
   } from '@chakra-ui/react';
 
-  import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 interface ModalOpenEditProps{
     isOpen: boolean;
@@ -39,7 +39,7 @@ export function ModalViewEdit({isOpen, onClose, nameTask} : ModalOpenEditProps):
     return(
         <Modal isOpen={isOpen} onClose={handleCloseModal} isCentered>  
             <ModalOverlay/>
-            <ModalContent>
+            <ModalContent mx={15}>
                 <ModalHeader>Edite</ModalHeader>
 
                 <ModalCloseButton/>

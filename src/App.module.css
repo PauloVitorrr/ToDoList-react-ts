@@ -22,3 +22,8 @@
     background-color: var(--blue-300);
     color: var(--white-);
 }
+@media (max-width: 558px){
+    .box{
+        margin: 0 15px;
+    }
+}

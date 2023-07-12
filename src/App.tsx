@@ -8,7 +8,6 @@ import styles from './App.module.css'
 
 import { Input } from '@chakra-ui/react'
 import { Plus } from 'phosphor-react'
-import { ModalViewEdit } from './components/ModalViewEdit'
 
 
 export function  App() {

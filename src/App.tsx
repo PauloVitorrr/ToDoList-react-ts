@@ -11,10 +11,7 @@ import { Plus } from 'phosphor-react'
 
 
 export function  App() {
-  const [list, setList] = useState<Item[]>([
-    { id: 1, name: 'Comprar pão', done: false},
-    { id: 2, name: 'Fazer atividade', done: false}
-  ])
+  const [list, setList] = useState<Item[]>([])
 
   const [inputText, setInputText] = useState('')
 
@@ -34,7 +31,7 @@ export function  App() {
 
   function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>){
     event.target.setCustomValidity('')
-
+    
     setInputText(event.target.value)
   }
 
@@ -72,7 +69,6 @@ export function  App() {
               <Task
                 key={listt.id}
                 name={listt.name}
-                done={listt.done}
                 onDeleteTask={deleteTask}
               />
             )

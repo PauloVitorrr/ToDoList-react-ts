@@ -1,19 +1,23 @@
 import { Trash, Pencil } from "phosphor-react";
 
 import styles from './Task.module.css';
-import { Checkbox } from "@chakra-ui/react";
+import { Checkbox, useDisclosure } from "@chakra-ui/react";
 import { ChangeEvent, useState } from "react";
 
+import { ModalViewEdit } from './ModalViewEdit'
+
 interface TaskProp{
-    name: string;
+    nameTask: string;
     onDeleteTask: (name: string) => void;
 }
 
-export function Task({name, onDeleteTask}:TaskProp){
+export function Task({nameTask, onDeleteTask}:TaskProp){
     const [agreement, setAgreement] = useState(false)
 
+    const {isOpen, onClose, onOpen} = useDisclosure()
+
     function handleDeleteTask(){
-        onDeleteTask(name)
+        onDeleteTask(nameTask)
     }
 
     function handleChange(event: ChangeEvent<HTMLInputElement>){
@@ -24,16 +28,22 @@ export function Task({name, onDeleteTask}:TaskProp){
         <div className={styles.renderTask}>
             <div className={styles.titleRadio}>
             <Checkbox size='md'  onChange={handleChange}/>
-                <span className={agreement ? styles.marked : styles.noMarked}>{name}</span>
+                <span className={agreement ? styles.marked : styles.noMarked}>{nameTask}</span>
             </div>
             <div className={styles.Icons}>
                 <button onClick={handleDeleteTask}>
                     <Trash size={18}/>
                 </button>
-                <button>
+                <button onClick={onOpen}>
                     <Pencil size={18}/>
                 </button>
             </div>
+            <ModalViewEdit
+                isOpen={isOpen}
+                onClose={onClose}
+                nameTask={nameTask}
+            />
         </div>
+            
     )
 }

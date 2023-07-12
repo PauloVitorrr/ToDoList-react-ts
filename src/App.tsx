@@ -68,7 +68,7 @@ export function  App() {
             return(
               <Task
                 key={listt.id}
-                name={listt.name}
+                nameTask={listt.name}
                 onDeleteTask={deleteTask}
               />
             )

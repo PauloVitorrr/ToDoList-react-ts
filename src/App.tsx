@@ -46,6 +46,13 @@ export function  App() {
     setList(tasksWithoutDeleteOne)
   }
 
+  function handleUpdateTask(oldName: string, newName: string) {
+    const updatedList = list.map((task) =>
+      task.name === oldName ? { ...task, name: newName } : task
+    );
+    setList(updatedList);
+  }
+
   return (
     <div  className={styles.container}>
       <div className={styles.box}>
@@ -70,6 +77,7 @@ export function  App() {
                 key={listt.id}
                 nameTask={listt.name}
                 onDeleteTask={deleteTask}
+                onUpdateTask= {handleUpdateTask}
               />
             )
           })}

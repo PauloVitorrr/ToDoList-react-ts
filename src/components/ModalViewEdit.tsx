@@ -16,25 +16,26 @@ import { ChangeEvent, FormEvent, useState } from "react";
 
 interface ModalOpenEditProps{
     isOpen: boolean;
-    onClose: () => void;
     nameTask: string;
+    onClose: () => void;
+    onUpdateTask: (oldName: string, newName: string) => void;
 }
 
-export function ModalViewEdit({isOpen, onClose, nameTask} : ModalOpenEditProps): JSX.Element{
+export function ModalViewEdit({isOpen, onClose, nameTask, onUpdateTask} : ModalOpenEditProps): JSX.Element{
     const handleCloseModal = () : void =>{
         onClose();
     }
 
-    const [nameTaskEdit, setNameTaskEdit] = useState(nameTask)
+    const [newTaskName, setNewTaskName] = useState(nameTask)
 
-    function handleAddTaskEdit(event: ChangeEvent<HTMLInputElement>){
-        setNameTaskEdit(event.target.value)
-    }
+    function handleChange(event: ChangeEvent<HTMLInputElement>) {
+        setNewTaskName(event.target.value);
+      }
     
-    function handleSubmitTask(event: FormEvent){
-        event.preventDefault()
-        
-    }
+    function handleUpdateTask() {
+        onUpdateTask(nameTask, newTaskName);
+        onClose(); 
+      }    
 
     return(
         <Modal isOpen={isOpen} onClose={handleCloseModal} isCentered>  
@@ -45,17 +46,17 @@ export function ModalViewEdit({isOpen, onClose, nameTask} : ModalOpenEditProps):
                 <ModalCloseButton/>
 
                 <ModalBody >
-                    <FormControl onSubmit={handleSubmitTask} mt={4}>
+                    <FormControl mt={4}>
                         <FormLabel>Edite sua task</FormLabel>
                         <Input
                             name='radio'
-                            onChange={handleAddTaskEdit}
-                            value={nameTaskEdit}
+                            onChange={handleChange}
+                            value={newTaskName}
                         />
                     </FormControl>
                 </ModalBody>
                 <ModalFooter>
-                    <Button type="submit" colorScheme='blue' mr={3}>
+                    <Button type="submit" colorScheme='blue' mr={3} onClick={handleUpdateTask}>
                         Salvar
                     </Button>
                     <Button onClick={onClose}>Cancelar</Button>

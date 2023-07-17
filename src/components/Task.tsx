@@ -9,9 +9,10 @@ import { ModalViewEdit } from './ModalViewEdit'
 interface TaskProp{
     nameTask: string;
     onDeleteTask: (name: string) => void;
+    onUpdateTask: (oldName: string, newName: string) => void;
 }
 
-export function Task({nameTask, onDeleteTask}:TaskProp){
+export function Task({nameTask, onDeleteTask, onUpdateTask}:TaskProp){
     const [agreement, setAgreement] = useState(false)
 
     const {isOpen, onClose, onOpen} = useDisclosure()
@@ -42,6 +43,7 @@ export function Task({nameTask, onDeleteTask}:TaskProp){
                 isOpen={isOpen}
                 onClose={onClose}
                 nameTask={nameTask}
+                onUpdateTask={onUpdateTask}
             />
         </div>
             

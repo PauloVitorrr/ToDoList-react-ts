@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, InvalidEvent, useEffect, useState } from 'react'
 
 import { Task } from './components/Task'
 import { Item } from './types/Item'
@@ -11,7 +11,13 @@ import { Plus } from 'phosphor-react'
 
 
 export function  App() {
-  const [list, setList] = useState<Item[]>([])
+  const [list, setList] = useState<Item[]>(() =>{
+    
+    const storedList = localStorage.getItem('taskList')
+    return storedList ? JSON.parse(storedList) : []
+  })
+
+  console.log(list)
 
   const [inputText, setInputText] = useState('')
 
@@ -29,6 +35,9 @@ export function  App() {
     setInputText('');
   }
 
+  useEffect(() => {
+    localStorage.setItem('taskList', JSON.stringify(list))
+  },[list])
   function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>){
     event.target.setCustomValidity('')
     
@@ -44,6 +53,7 @@ export function  App() {
       return task.name !== taskToDelete
     })
     setList(tasksWithoutDeleteOne)
+    localStorage.setItem('taskList', JSON.stringify(tasksWithoutDeleteOne))
   }
 
   function handleUpdateTask(oldName: string, newName: string) {
@@ -51,6 +61,7 @@ export function  App() {
       task.name === oldName ? { ...task, name: newName } : task
     );
     setList(updatedList);
+    localStorage.setItem('taskList', JSON.stringify(updatedList))
   }
 
   return (

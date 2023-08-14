@@ -28,7 +28,7 @@ export function Task({nameTask, onDeleteTask, onUpdateTask}:TaskProp){
     return(
         <div className={styles.renderTask}>
             <div className={styles.titleRadio}>
-            <Checkbox size='md'  onChange={handleChange}/>
+            <Checkbox size='md' onChange={handleChange}/>
                 <span className={agreement ? styles.marked : styles.noMarked}>{nameTask}</span>
             </div>
             <div className={styles.Icons}>
@@ -46,6 +46,5 @@ export function Task({nameTask, onDeleteTask, onUpdateTask}:TaskProp){
                 onUpdateTask={onUpdateTask}
             />
         </div>
-            
     )
 }

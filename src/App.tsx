@@ -28,7 +28,7 @@ export function  App() {
     newList.push({
       id: list.length +1,
       name: inputText,
-      done: false,
+      isChecked: false,
     });
 
     setList(newList);
@@ -58,10 +58,18 @@ export function  App() {
 
   function handleUpdateTask(oldName: string, newName: string) {
     const updatedList = list.map((task) =>
-      task.name === oldName ? { ...task, name: newName } : task
+      task.name === oldName ? { ...task, name: newName} : task
     );
     setList(updatedList);
     localStorage.setItem('taskList', JSON.stringify(updatedList))
+  }
+
+  function handleToggleTask(name: string, isChecked: boolean) {
+    const updatedList = list.map((task) =>
+      task.name === name ? { ...task, isChecked } : task
+    );
+    setList(updatedList);
+    localStorage.setItem('taskList', JSON.stringify(updatedList)); // Atualizar o localStorage
   }
 
   return (
@@ -87,8 +95,10 @@ export function  App() {
               <Task
                 key={listt.id}
                 nameTask={listt.name}
+                isChecked={listt.isChecked}
                 onDeleteTask={deleteTask}
                 onUpdateTask= {handleUpdateTask}
+                onToggleTask={handleToggleTask}
               />
             )
           })}

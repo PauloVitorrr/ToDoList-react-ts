@@ -10,9 +10,11 @@ interface TaskProp{
     nameTask: string;
     onDeleteTask: (name: string) => void;
     onUpdateTask: (oldName: string, newName: string) => void;
+    onToggleTask: (name: string, isChecked: boolean) => void;
+    isChecked: boolean;
 }
 
-export function Task({nameTask, onDeleteTask, onUpdateTask}:TaskProp){
+export function Task({nameTask, onDeleteTask, onUpdateTask, isChecked, onToggleTask}:TaskProp){
     const [agreement, setAgreement] = useState(false)
 
     const {isOpen, onClose, onOpen} = useDisclosure()
@@ -22,13 +24,17 @@ export function Task({nameTask, onDeleteTask, onUpdateTask}:TaskProp){
     }
 
     function handleChange(event: ChangeEvent<HTMLInputElement>){
-        setAgreement(event.target.checked)
+        const newIsChecked = event.target.checked
+        setAgreement(newIsChecked)
+
+        onToggleTask(nameTask, newIsChecked)
     }
+
 
     return(
         <div className={styles.renderTask}>
             <div className={styles.titleRadio}>
-            <Checkbox size='md' onChange={handleChange}/>
+            <Checkbox size='md' isChecked={isChecked} onChange={handleChange}/>
                 <span className={agreement ? styles.marked : styles.noMarked}>{nameTask}</span>
             </div>
             <div className={styles.Icons}>

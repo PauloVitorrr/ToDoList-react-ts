@@ -12,7 +12,7 @@ import {
     Button,
   } from '@chakra-ui/react';
 
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 interface ModalOpenEditProps{
     isOpen: boolean;

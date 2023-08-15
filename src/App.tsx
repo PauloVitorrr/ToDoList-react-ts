@@ -69,7 +69,7 @@ export function  App() {
       task.name === name ? { ...task, isChecked } : task
     );
     setList(updatedList);
-    localStorage.setItem('taskList', JSON.stringify(updatedList)); // Atualizar o localStorage
+    localStorage.setItem('taskList', JSON.stringify(updatedList));
   }
 
   return (

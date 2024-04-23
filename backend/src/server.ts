@@ -1,18 +1,10 @@
-import Fastify from "fastify";
+import fastify from "fastify";
+import { createActivy } from "./routes/create-activity";
 
-const fastify = Fastify();
+const app = fastify();
 
-fastify.get("/", async (request, reply) => {
-  return "Hello there! 👋";
+app.register(createActivy);
+
+app.listen({ port: 3333 }).then(() => {
+  console.log("http server running!");
 });
-
-const start = async () => {
-  try {
-    await fastify.listen({ port: 8080 });
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
-  }
-};
-
-start();

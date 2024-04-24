@@ -1,9 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { prisma } from "../lib/prisma";
-
-interface Params {
-  id: string;
-}
+import { Params } from "../interfaces";
 
 export async function deleteActivity(app: FastifyInstance) {
   app.delete<{ Params: Params }>("/tasks/:id", async (request, reply) => {

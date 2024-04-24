@@ -3,3 +3,7 @@ export type Item = {
   activity: string;
   isChecked: boolean;
 };
+
+export interface Params {
+  id: string;
+}

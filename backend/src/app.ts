@@ -1,19 +1,21 @@
-// app.js (ou index.js)
+import { PrismaClient } from "@prisma/client";
+import { Request, Response } from "express";
 
 const express = require("express");
 const app = express();
 const port = 3000;
 const cors = require("cors");
+const prisma = new PrismaClient();
 
 app.use(cors());
 
-app.get("/", (req: any, res: any) => {
-  const tasks = [
-    { id: 1, name: "Aprender React Hooks", isChecked: false },
-    { id: 2, name: "Configurar API no Express", isChecked: true },
-    { id: 3, name: "Refatorar componente App.tsx", isChecked: false },
-  ];
-  res.json(tasks);
+app.get("/tasks", async (req: Request, res: Response) => {
+  try {
+    const tasks = await prisma.task.findMany();
+    return res.status(200).json(tasks);
+  } catch {
+    return res.status(500).json({ error: "Error ao buscar tarefa" });
+  }
 });
 
 app.listen(port, () => {

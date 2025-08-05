@@ -41,7 +41,7 @@ export function App() {
   }
 
   useEffect(() => {
-    api.get("/").then((response) => {
+    api.get("/tasks").then((response) => {
       setList(response.data);
     });
   }, []);
